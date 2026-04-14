@@ -9,7 +9,7 @@ function App() {
             <EventCard count={5} desktop={3} mobile={2} />
 
             <EventCard count={4} desktop={2} mobile={2} />
-            <EventCard count={32} desktop={6} mobile={4} />
+            <EventCard count={22} desktop={6} mobile={4} />
         </div>
     );
 }
