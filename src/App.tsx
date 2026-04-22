@@ -1,12 +1,13 @@
 import "./App.css";
-import EventCard from "./features/EventCard";
+import { Routes, Route } from "react-router-dom";
+import EventCardView from "@/features/event-card/views/EventCardView";
 
 function App() {
-  return (
-    <div id="center">
-      <EventCard />
-    </div>
-  );
+    return (
+        <Routes>
+            <Route path="/event-card" element={<EventCardView />} />
+        </Routes>
+    );
 }
 
 export default App;
