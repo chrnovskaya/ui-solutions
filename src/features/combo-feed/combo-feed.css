@@ -1,0 +1,62 @@
+/**
+ * Токени фіду подій. Скоуп навмисно темний і не залежить від теми сайту:
+ * продукт, з якого знято макет, існує тільки в темній темі.
+ */
+.combo-feed {
+    /* Поверхні */
+    --feed-bg: #0b0b0d;
+    --feed-row-bg: #17181d;
+    --feed-header-bg: #1d1e24;
+    --feed-cell-bg: #24262d;
+    --feed-border: #2b2d35;
+    --feed-scrim: rgb(0 0 0 / 0.7);
+
+    /* Текст */
+    --feed-text: #ececee;
+    --feed-text-muted: #8a8c96;
+    --feed-odds: #4cb7e6;
+    --feed-title-size: 17px;
+    --feed-subtitle-size: 15px;
+
+    /* Акцент комбо */
+    --combo-accent: #c9f24c;
+    --combo-accent-ink: #12160a;
+    --combo-accent-soft: color-mix(in oklab, var(--combo-accent) 14%, transparent);
+    --combo-accent-line: color-mix(in oklab, var(--combo-accent) 55%, transparent);
+
+    /* Геометрія */
+    --combo-radius: 16px;
+    --combo-row-radius: 12px;
+    --combo-cell-radius: 10px;
+    --phone-width: 380px;
+
+    /*
+     * Мінімальна зона тапу (WCAG 2.5.8 Target Size, iOS HIG).
+     * Від неї рахуються всі інтерактивні елементи фіду.
+     */
+    --combo-tap-size: 44px;
+
+    color: var(--feed-text);
+}
+
+/*
+ * Глобальні стилі заголовків у index.css оголошені поза @layer, а незашаровані
+ * правила в каскаді сильніші за будь-яку утиліту Tailwind (вона лежить у
+ * @layer utilities). Тому типографіку заголовків фіду задаємо тут, а не класами.
+ */
+.combo-feed :is(h1, h2, h3) {
+    margin: 0;
+    font-family: inherit;
+    font-weight: 600;
+    letter-spacing: normal;
+    line-height: 1.3;
+    color: inherit;
+}
+
+.combo-feed h1 {
+    font-size: var(--feed-title-size);
+}
+
+.combo-feed h2 {
+    font-size: var(--feed-subtitle-size);
+}
