@@ -9,7 +9,7 @@ export interface OutcomesProps {
 }
 
 export interface EventCardProps {
-    count: number;
-    desktop: number;
-    mobile: number;
+    count?: number;
+    desktop?: number;
+    mobile?: number;
 }
