@@ -23,7 +23,7 @@ export function OddsCell({ outcome, selected, onSelect, eventLabel }: OddsCellPr
             aria-pressed={selected}
             aria-label={`${eventLabel}, ${outcome.key}, ${formatOdds(outcome.odds)}`}
             className={classNames(
-                "relative flex min-h-13 cursor-pointer flex-col items-center justify-center gap-1",
+                "relative flex min-h-(--combo-tap-size) cursor-pointer flex-col items-center justify-center gap-1",
                 "rounded-(--combo-cell-radius) border px-2 py-1.5 transition-colors",
                 selected
                     ? "border-(--combo-accent-line) bg-(--combo-accent-soft)"
@@ -32,7 +32,7 @@ export function OddsCell({ outcome, selected, onSelect, eventLabel }: OddsCellPr
         >
             <span
                 className={classNames(
-                    "text-[17px] leading-none font-semibold",
+                    "text-[16px] leading-none font-semibold",
                     selected ? "text-(--combo-accent)" : "text-(--feed-odds)",
                 )}
             >

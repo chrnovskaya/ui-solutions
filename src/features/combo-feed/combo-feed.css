@@ -25,9 +25,8 @@
     --combo-accent-line: color-mix(in oklab, var(--combo-accent) 55%, transparent);
 
     /* Геометрія */
-    --combo-radius: 16px;
-    --combo-row-radius: 12px;
-    --combo-cell-radius: 10px;
+    --combo-radius: 12px;
+        --combo-cell-radius: 8px;
 
     /* Ширина колонки фіду: вузька на мобільному, ширша на десктопі. */
     --feed-width: 380px;

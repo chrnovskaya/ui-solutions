@@ -24,7 +24,7 @@ export function AddComboFab({ odds, disabled, added, onClick }: AddComboFabProps
             disabled={disabled}
             aria-pressed={added}
             aria-label={added ? `Прибрати комбо ${formatOdds(odds)} з купона` : `Додати комбо ${formatOdds(odds)} в купон`}
-            className="absolute right-0 bottom-0 flex size-(--combo-tap-size) translate-x-1/3 translate-y-1/3 cursor-pointer items-center justify-center rounded-full bg-(--combo-accent) text-(--combo-accent-ink) shadow-[0_6px_16px_rgb(0_0_0/0.55)] transition-transform active:scale-95 disabled:cursor-not-allowed disabled:opacity-40"
+            className="absolute right-0 bottom-0 flex size-(--combo-tap-size) translate-x-1/4 translate-y-1/4 cursor-pointer items-center justify-center rounded-full bg-(--combo-accent) text-(--combo-accent-ink) shadow-[0_6px_16px_rgb(0_0_0/0.55)] transition-transform active:scale-95 disabled:cursor-not-allowed disabled:opacity-40"
         >
             {added ? <Icon.Check size={22} /> : <Icon.Plus size={22} />}
         </button>

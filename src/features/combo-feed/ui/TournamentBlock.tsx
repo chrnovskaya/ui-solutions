@@ -1,5 +1,5 @@
 import { splitIntoSegments } from "../lib/splitIntoSegments";
-import type { ComboPick, FeedSelection, OutcomeKey, TournamentBlock as TournamentBlockData } from "../types";
+import type { ComboPick, FeedEvent, FeedSelection, OutcomeKey, TournamentBlock as TournamentBlockData } from "../types";
 import { AddComboFab } from "./AddComboFab";
 import { ComboBadge } from "./ComboBadge";
 import { ComboFrame } from "./ComboFrame";
@@ -22,9 +22,14 @@ interface TournamentBlockProps {
 }
 
 /**
- * Блок одного турніру. Події ріжуться на відрізки, і тільки відрізок
- * комбо-групи отримує рамку з бейджем і кнопкою — решта лишається
- * звичайними рядками фіду.
+ * Блок одного турніру: шапка лежить впритул на списку матчів, тому блок
+ * читається як одна панель, а не як набір окремих карток.
+ *
+ * Події ріжуться на відрізки, і рамку отримує тільки відрізок комбо-групи —
+ * решта лишається звичайними рядками фіду.
+ *
+ * Блок навмисно без overflow: hidden — бейдж і кругла кнопка звисають
+ * за межі рамки, і обрізання їх зʼїло б.
  */
 export function TournamentBlock({
     block,
@@ -42,7 +47,7 @@ export function TournamentBlock({
 }: TournamentBlockProps) {
     const segments = splitIntoSegments(block.events, comboEventIds);
 
-    const renderRows = (events: TournamentBlockData["events"]) =>
+    const renderRows = (events: FeedEvent[]) =>
         events.map((event) => (
             <EventRow
                 key={event.id}
@@ -55,35 +60,34 @@ export function TournamentBlock({
         ));
 
     return (
-        <section className="flex flex-col gap-1.5">
-            <TournamentHeader
-                tournament={block.tournament}
-                collapsed={collapsed}
-                onToggle={onToggleCollapsed}
-            />
+        <section className="flex flex-col">
+            <TournamentHeader tournament={block.tournament} collapsed={collapsed} onToggle={onToggleCollapsed} />
 
-            {!collapsed &&
-                segments.map((segment, index) =>
-                    segment.kind === "combo" ? (
-                        // Відступ згори лишає місце бейджу, що навис на межу рамки.
-                        <div key={`combo-${index}`} className="pt-3">
-                            <ComboFrame className="pt-4">
-                                <div className="flex flex-col gap-1.5">{renderRows(segment.events)}</div>
-                                <ComboBadge odds={comboOdds} />
-                                <AddComboFab
-                                    odds={comboOdds}
-                                    disabled={comboPicks.length === 0 || comboOdds === null}
-                                    added={comboAdded}
-                                    onClick={onToggleCombo}
-                                />
-                            </ComboFrame>
-                        </div>
-                    ) : (
-                        <div key={`plain-${index}`} className="flex flex-col gap-1.5">
-                            {renderRows(segment.events)}
-                        </div>
-                    ),
-                )}
+            {!collapsed && (
+                <div className="flex flex-col gap-1.5">
+                    {segments.map((segment, index) =>
+                        segment.kind === "combo" ? (
+                            // Відступ згори лишає місце бейджу, що навис на межу рамки.
+                            <div key={`combo-${index}`} className="pt-2.5">
+                                <ComboFrame className="pt-4">
+                                    <div className="flex flex-col gap-1.5">{renderRows(segment.events)}</div>
+                                    <ComboBadge odds={comboOdds} />
+                                    <AddComboFab
+                                        odds={comboOdds}
+                                        disabled={comboPicks.length === 0 || comboOdds === null}
+                                        added={comboAdded}
+                                        onClick={onToggleCombo}
+                                    />
+                                </ComboFrame>
+                            </div>
+                        ) : (
+                            <div key={`plain-${index}`} className="flex flex-col gap-1.5">
+                                {renderRows(segment.events)}
+                            </div>
+                        ),
+                    )}
+                </div>
+            )}
         </section>
     );
 }
