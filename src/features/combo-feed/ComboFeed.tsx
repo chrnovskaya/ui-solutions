@@ -48,7 +48,7 @@ export default function ComboFeed() {
 
     return (
         <ComboFeedScope className="min-h-svh bg-(--feed-bg) px-4 pt-3 pb-24 text-left">
-            <div className="mx-auto flex w-full max-w-(--phone-width) flex-col gap-3">
+            <div className="mx-auto flex w-full max-w-(--feed-width) flex-col gap-3 xl:max-w-(--feed-width-desktop)">
                 {blocks.map((block) => (
                     <TournamentBlock
                         key={block.tournament.id}

@@ -28,7 +28,10 @@
     --combo-radius: 16px;
     --combo-row-radius: 12px;
     --combo-cell-radius: 10px;
-    --phone-width: 380px;
+
+    /* Ширина колонки фіду: вузька на мобільному, ширша на десктопі. */
+    --feed-width: 380px;
+    --feed-width-desktop: 688px;
 
     /*
      * Мінімальна зона тапу (WCAG 2.5.8 Target Size, iOS HIG).
