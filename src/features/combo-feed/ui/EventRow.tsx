@@ -1,3 +1,4 @@
+import classNames from "classnames";
 import type { FeedEvent, FeedSelection, OutcomeKey } from "../types";
 import { FavoriteAction } from "./FavoriteAction";
 import { OddsCell } from "./OddsCell";
@@ -5,6 +6,8 @@ import { TeamLine } from "./TeamLine";
 
 interface EventRowProps {
     event: FeedEvent;
+    /** Остання картка турніру — тільки вона заокруглюється знизу. */
+    lastInBlock: boolean;
     selection: FeedSelection;
     onSelect: (eventId: string, key: OutcomeKey) => void;
     favorite: boolean;
@@ -18,14 +21,20 @@ interface EventRowProps {
  *
  * Жодної фіксованої висоти: дворядкова назва команди розтягує рядок,
  * а за ним — і рамку групи.
+ *
+ * Кути: усередині блоку картки майже прямі (4px), і тільки остання
+ * закруглюється знизу — блок читається як одна панель, кругла ззовні.
  */
-export function EventRow({ event, selection, onSelect, favorite, onToggleFavorite }: EventRowProps) {
+export function EventRow({ event, lastInBlock, selection, onSelect, favorite, onToggleFavorite }: EventRowProps) {
     const eventLabel = `${event.home.name} — ${event.away.name}`;
     const selectedKey = selection[event.id];
 
     return (
         <article
-            className="grid gap-x-3 rounded-(--feed-radius-lg) bg-(--feed-surface) px-3 py-2.5 grid-cols-[minmax(auto,33%)_1fr_auto] grid-rows-[20px_auto] [grid-template-areas:'header_header_favorite'_'event-info_main-markets_favorite'] max-xl:grid-cols-[1fr_auto] max-xl:grid-rows-[auto_auto_auto] max-xl:[grid-template-areas:'header_header'_'event-info_favorite'_'main-markets_main-markets']"
+            className={classNames(
+                lastInBlock && "rounded-b-(--feed-radius-lg)",
+                "grid gap-x-3 rounded-(--feed-radius-xs) bg-(--feed-surface) px-3 py-2.5 grid-cols-[minmax(auto,33%)_1fr_auto] grid-rows-[20px_auto] [grid-template-areas:'header_header_favorite'_'event-info_main-markets_favorite'] max-xl:grid-cols-[1fr_auto] max-xl:grid-rows-[auto_auto_auto] max-xl:[grid-template-areas:'header_header'_'event-info_favorite'_'main-markets_main-markets']",
+            )}
         >
             <p className="[grid-area:header] text-[11px] tracking-[0.5px] text-(--feed-text-muted) uppercase">
                 {event.startsAt}

@@ -46,12 +46,14 @@ export function TournamentBlock({
     onToggleCombo,
 }: TournamentBlockProps) {
     const segments = splitIntoSegments(block.events, comboEventIds);
+    const lastEventId = block.events.at(-1)?.id;
 
     const renderRows = (events: FeedEvent[]) =>
         events.map((event) => (
             <EventRow
                 key={event.id}
                 event={event}
+                lastInBlock={event.id === lastEventId}
                 selection={selection}
                 onSelect={onSelect}
                 favorite={isFavorite(event.id)}

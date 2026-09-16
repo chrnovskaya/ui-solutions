@@ -28,7 +28,7 @@
     /* Геометрія — радіуси з тієї самої дизайн-системи */
     --feed-radius-lg: 20px;
     --feed-radius-xs: 4px;
-    --combo-radius: 20px;
+    --combo-radius: 12px;
     --combo-cell-radius: 8px;
 
     /* Ширина колонки фіду: вузька на мобільному, ширша на десктопі. */
