@@ -69,8 +69,7 @@ export function TournamentBlock({
                 <div className="flex flex-col gap-0.5">
                     {segments.map((segment, index) =>
                         segment.kind === "combo" ? (
-                            // Вузький відступ згори — рівно під навис бейджа.
-                            <div key={`combo-${index}`} className="pt-1.5">
+                            <div key={`combo-${index}`}>
                                 <ComboFrame>
                                     <div className="flex flex-col gap-0.5">{renderRows(segment.events)}</div>
                                     <ComboBadge odds={comboOdds} />

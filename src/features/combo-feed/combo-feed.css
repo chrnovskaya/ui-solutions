@@ -20,10 +20,10 @@
     --feed-odds: #4cb7e6;
 
     /* Акцент комбо */
-    --combo-accent: #c9f24c;
-    --combo-accent-ink: #12160a;
+    --combo-accent: #56f9c3;
+    --combo-accent-ink: #0a1a14;
     --combo-accent-soft: color-mix(in oklab, var(--combo-accent) 14%, transparent);
-    --combo-accent-line: color-mix(in oklab, var(--combo-accent) 55%, transparent);
+    --combo-accent-line: color-mix(in oklab, var(--combo-accent) 75%, transparent);
 
     /* Геометрія — радіуси з тієї самої дизайн-системи */
     --feed-radius-lg: 20px;
