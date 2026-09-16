@@ -7,10 +7,7 @@ export interface Outcome {
 }
 
 export interface Team {
-    /** Коротка назва — так команда підписана у фіді. */
     name: string;
-    /** Довга назва — щоб перевіряти перенос у два рядки. */
-    longName: string;
     /** Монограма замість емблеми клубу. */
     monogram: string;
     /** Колір монограми. */
@@ -25,18 +22,25 @@ export interface FeedEvent {
     away: Team;
     /** Рівно три результати: 1, X, 2. */
     outcomes: Outcome[];
-    /** Результат, обраний за замовчуванням — пік для комбо. */
-    defaultOutcomeKey: OutcomeKey;
+    /** Пік, підсвічений одразу. Є тільки в подій комбо-групи. */
+    defaultOutcomeKey: OutcomeKey | null;
 }
 
 export interface Tournament {
+    id: string;
     flag: string;
     title: string;
 }
 
-export interface ComboFeedData {
+export interface TournamentBlock {
     tournament: Tournament;
     events: FeedEvent[];
+}
+
+export interface FeedData {
+    blocks: TournamentBlock[];
+    /** Події комбо-групи. Мають іти підряд у межах одного турніру. */
+    comboEventIds: string[];
 }
 
 /** Обраний результат конкретної події. */
@@ -46,9 +50,5 @@ export interface ComboPick {
     odds: number;
 }
 
-/** Спільний контракт усіх трьох варіантів прототипу. */
-export interface ComboVariantProps {
-    onAddToBetslip: (picks: ComboPick[]) => void;
-    /** Підставити довгі назви команд — стрес-тест переносу рядків. */
-    longNames?: boolean;
-}
+/** Обрані результати по всьому фіду: id події -> ключ результату. */
+export type FeedSelection = Record<string, OutcomeKey | null>;

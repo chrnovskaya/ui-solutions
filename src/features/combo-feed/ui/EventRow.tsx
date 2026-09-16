@@ -1,15 +1,14 @@
-import type { ReactNode } from "react";
-import type { FeedEvent, OutcomeKey } from "../types";
+import type { FeedEvent, FeedSelection, OutcomeKey } from "../types";
+import { FavoriteAction } from "./FavoriteAction";
 import { OddsCell } from "./OddsCell";
 import { TeamLine } from "./TeamLine";
 
 interface EventRowProps {
     event: FeedEvent;
-    longNames: boolean;
-    selectedKey: OutcomeKey | null;
-    onSelect: (key: OutcomeKey) => void;
-    /** Слот праворуч від назв команд: зірка або груповий CTA у V2. */
-    action: ReactNode;
+    selection: FeedSelection;
+    onSelect: (eventId: string, key: OutcomeKey) => void;
+    favorite: boolean;
+    onToggleFavorite: () => void;
 }
 
 /**
@@ -19,10 +18,9 @@ interface EventRowProps {
  * Жодної фіксованої висоти: дворядкова назва команди розтягує рядок,
  * а за ним — і рамку групи.
  */
-export function EventRow({ event, longNames, selectedKey, onSelect, action }: EventRowProps) {
-    const homeName = longNames ? event.home.longName : event.home.name;
-    const awayName = longNames ? event.away.longName : event.away.name;
-    const eventLabel = `${homeName} — ${awayName}`;
+export function EventRow({ event, selection, onSelect, favorite, onToggleFavorite }: EventRowProps) {
+    const eventLabel = `${event.home.name} — ${event.away.name}`;
+    const selectedKey = selection[event.id];
 
     return (
         <article className="rounded-(--combo-row-radius) bg-(--feed-row-bg) px-3 py-2.5">
@@ -30,10 +28,10 @@ export function EventRow({ event, longNames, selectedKey, onSelect, action }: Ev
 
             <div className="mt-1.5 flex items-center gap-2">
                 <div className="flex min-w-0 flex-1 flex-col gap-1.5">
-                    <TeamLine team={event.home} name={homeName} />
-                    <TeamLine team={event.away} name={awayName} />
+                    <TeamLine team={event.home} />
+                    <TeamLine team={event.away} />
                 </div>
-                {action}
+                <FavoriteAction eventLabel={eventLabel} active={favorite} onToggle={onToggleFavorite} />
             </div>
 
             <div className="mt-2.5 grid grid-cols-3 gap-1.5">
@@ -42,7 +40,7 @@ export function EventRow({ event, longNames, selectedKey, onSelect, action }: Ev
                         key={outcome.key}
                         outcome={outcome}
                         selected={selectedKey === outcome.key}
-                        onSelect={() => onSelect(outcome.key)}
+                        onSelect={() => onSelect(event.id, outcome.key)}
                         eventLabel={eventLabel}
                     />
                 ))}

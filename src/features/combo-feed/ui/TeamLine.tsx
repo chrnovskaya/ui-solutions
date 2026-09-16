@@ -2,11 +2,9 @@ import type { Team } from "../types";
 
 interface TeamLineProps {
     team: Team;
-    /** Готова до показу назва — коротка або довга. */
-    name: string;
 }
 
-export function TeamLine({ team, name }: TeamLineProps) {
+export function TeamLine({ team }: TeamLineProps) {
     return (
         <div className="flex min-w-0 items-center gap-2">
             <span
@@ -17,7 +15,7 @@ export function TeamLine({ team, name }: TeamLineProps) {
                 {team.monogram}
             </span>
             {/* Назва переноситься на другий рядок — висота рядка й рамки підлаштується сама. */}
-            <span className="min-w-0 text-[15px] leading-tight break-words text-(--feed-text)">{name}</span>
+            <span className="min-w-0 text-[15px] leading-tight break-words text-(--feed-text)">{team.name}</span>
         </div>
     );
 }
