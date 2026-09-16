@@ -8,11 +8,14 @@ interface TournamentHeaderProps {
 }
 
 /**
- * Шапка турніру — компактний плаский бар на всю ширину блоку.
+ * Шапка турніру. Геометрія й типографіка зняті з демо-продукту:
+ * висота 32px, велике заокруглення зверху й маленьке знизу, а фон той самий,
+ * що й у карток матчів — блок тримається купи зазорами й радіусами, а не
+ * різницею кольорів.
  *
- * Сам бар низький, як у макеті, тому зону тапу добираємо псевдоелементом
- * до --combo-tap-size: він розтягується по 6px над і під баром, де лежать
- * тільки міжблочний зазор і рядок часу — нічого клікабельного.
+ * Бар низький, тому зону тапу добираємо псевдоелементом до --combo-tap-size:
+ * він розтягується над і під баром, де лежать тільки зазор між блоками
+ * і рядок часу — нічого клікабельного.
  */
 export function TournamentHeader({ tournament, collapsed, onToggle }: TournamentHeaderProps) {
     return (
@@ -20,19 +23,21 @@ export function TournamentHeader({ tournament, collapsed, onToggle }: Tournament
             type="button"
             onClick={onToggle}
             aria-expanded={!collapsed}
-            className="relative flex w-full cursor-pointer items-center gap-2 bg-(--feed-header-bg) px-3 py-2 text-left after:absolute after:inset-x-0 after:top-1/2 after:h-(--combo-tap-size) after:-translate-y-1/2 after:content-['']"
+            className="relative flex min-h-8 w-full cursor-pointer items-center gap-1.5 rounded-t-(--feed-radius-lg) rounded-b-(--feed-radius-xs) bg-(--feed-surface) pl-3 text-left after:absolute after:inset-x-0 after:top-1/2 after:h-(--combo-tap-size) after:-translate-y-1/2 after:content-['']"
         >
             <span className="text-[13px] leading-none" aria-hidden="true">
                 {tournament.flag}
             </span>
-            <span className="flex-1 text-[12px] leading-none font-semibold text-(--feed-text-strong)">
+
+            <span className="flex-1 truncate text-[12px] leading-4 tracking-[0.4px] text-(--feed-text)">
                 {tournament.title}
             </span>
+
             <span
-                className={`text-(--feed-text-muted) transition-transform ${collapsed ? "rotate-180" : ""}`}
+                className={`flex items-center pr-3 text-(--feed-icon-muted) transition-transform ${collapsed ? "rotate-180" : ""}`}
                 aria-hidden="true"
             >
-                <Icon.ChevronUp size={16} />
+                <Icon.ChevronUp size={20} />
             </span>
         </button>
     );

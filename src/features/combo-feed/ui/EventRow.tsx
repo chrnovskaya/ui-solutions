@@ -25,7 +25,7 @@ export function EventRow({ event, selection, onSelect, favorite, onToggleFavorit
 
     return (
         <article
-            className="grid gap-x-3 bg-(--feed-row-bg) px-3 py-2.5 grid-cols-[minmax(auto,33%)_1fr_auto] grid-rows-[20px_auto] [grid-template-areas:'header_header_favorite'_'event-info_main-markets_favorite'] max-xl:grid-cols-[1fr_auto] max-xl:grid-rows-[auto_auto_auto] max-xl:[grid-template-areas:'header_header'_'event-info_favorite'_'main-markets_main-markets']"
+            className="grid gap-x-3 rounded-(--feed-radius-lg) bg-(--feed-surface) px-3 py-2.5 grid-cols-[minmax(auto,33%)_1fr_auto] grid-rows-[20px_auto] [grid-template-areas:'header_header_favorite'_'event-info_main-markets_favorite'] max-xl:grid-cols-[1fr_auto] max-xl:grid-rows-[auto_auto_auto] max-xl:[grid-template-areas:'header_header'_'event-info_favorite'_'main-markets_main-markets']"
         >
             <p className="[grid-area:header] text-[11px] tracking-[0.5px] text-(--feed-text-muted) uppercase">
                 {event.startsAt}

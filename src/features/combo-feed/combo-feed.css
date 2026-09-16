@@ -1,23 +1,23 @@
 /**
- * Токени фіду подій. Скоуп навмисно темний і не залежить від теми сайту:
- * продукт, з якого знято макет, існує тільки в темній темі.
+ * Токени фіду подій. Значення зняті з демо-продукту (demo.gr8.tech):
+ * палітра нейтрально-сіра, не синювата, а шапка турніру й картки матчів
+ * лежать на одній поверхні — розділяє їх не колір, а 2px зазору й радіуси.
+ *
+ * Скоуп навмисно темний і не залежить від теми сайту.
  */
 .combo-feed {
     /* Поверхні */
-    --feed-bg: #0b0b0d;
-    --feed-row-bg: #17181d;
-    --feed-header-bg: #1d1e24;
-    --feed-cell-bg: #24262d;
-    --feed-border: #2b2d35;
+    --feed-bg: #0d0d0d;
+    --feed-surface: #1c1c1d;
+    --feed-cell-bg: #242425;
+    --feed-border: #2b2b2d;
     --feed-scrim: rgb(0 0 0 / 0.7);
 
     /* Текст */
-    --feed-text: #ececee;
-    --feed-text-strong: #ffffff;
-    --feed-text-muted: #8a8c96;
+    --feed-text: #ffffff;
+    --feed-text-muted: #ffffffa6;
+    --feed-icon-muted: #757577;
     --feed-odds: #4cb7e6;
-    --feed-title-size: 17px;
-    --feed-subtitle-size: 15px;
 
     /* Акцент комбо */
     --combo-accent: #c9f24c;
@@ -25,9 +25,11 @@
     --combo-accent-soft: color-mix(in oklab, var(--combo-accent) 14%, transparent);
     --combo-accent-line: color-mix(in oklab, var(--combo-accent) 55%, transparent);
 
-    /* Геометрія */
-    --combo-radius: 12px;
-        --combo-cell-radius: 8px;
+    /* Геометрія — радіуси з тієї самої дизайн-системи */
+    --feed-radius-lg: 20px;
+    --feed-radius-xs: 4px;
+    --combo-radius: 20px;
+    --combo-cell-radius: 8px;
 
     /* Ширина колонки фіду: вузька на мобільному, ширша на десктопі. */
     --feed-width: 380px;
@@ -35,10 +37,12 @@
 
     /*
      * Мінімальна зона тапу (WCAG 2.5.8 Target Size, iOS HIG).
-     * Від неї рахуються всі інтерактивні елементи фіду.
+     * Від неї рахуються інтерактивні елементи, які не мають власного
+     * розміру з макета.
      */
     --combo-tap-size: 44px;
 
+    font-family: Onest, system-ui, "Segoe UI", Roboto, sans-serif;
     color: var(--feed-text);
 }
 
@@ -56,10 +60,6 @@
     color: inherit;
 }
 
-.combo-feed h1 {
-    font-size: var(--feed-title-size);
-}
-
 .combo-feed h2 {
-    font-size: var(--feed-subtitle-size);
+    font-size: 15px;
 }

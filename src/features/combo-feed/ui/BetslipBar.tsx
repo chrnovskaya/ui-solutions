@@ -12,7 +12,7 @@ export function BetslipBar({ picks, onClear }: BetslipBarProps) {
     if (picks.length === 0) return null;
 
     return (
-        <div className="fixed inset-x-0 bottom-0 z-50 bg-(--feed-header-bg)">
+        <div className="fixed inset-x-0 bottom-0 z-50 bg-(--feed-surface)">
             <div className="mx-auto flex max-w-(--feed-width) xl:max-w-(--feed-width-desktop) items-center gap-3 border-t border-(--combo-accent-line) px-4 py-3">
                 <div className="flex min-w-0 flex-1 flex-col gap-0.5">
                     <span className="text-[11px] tracking-[0.5px] text-(--feed-text-muted) uppercase">У купоні</span>

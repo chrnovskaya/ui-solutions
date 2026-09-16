@@ -60,17 +60,17 @@ export function TournamentBlock({
         ));
 
     return (
-        <section className="flex flex-col">
+        <section className="flex flex-col gap-0.5">
             <TournamentHeader tournament={block.tournament} collapsed={collapsed} onToggle={onToggleCollapsed} />
 
             {!collapsed && (
-                <div className="flex flex-col gap-1.5">
+                <div className="flex flex-col gap-0.5">
                     {segments.map((segment, index) =>
                         segment.kind === "combo" ? (
                             // Відступ згори лишає місце бейджу, що навис на межу рамки.
                             <div key={`combo-${index}`} className="pt-2.5">
                                 <ComboFrame className="pt-4">
-                                    <div className="flex flex-col gap-1.5">{renderRows(segment.events)}</div>
+                                    <div className="flex flex-col gap-0.5">{renderRows(segment.events)}</div>
                                     <ComboBadge odds={comboOdds} />
                                     <AddComboFab
                                         odds={comboOdds}
@@ -81,7 +81,7 @@ export function TournamentBlock({
                                 </ComboFrame>
                             </div>
                         ) : (
-                            <div key={`plain-${index}`} className="flex flex-col gap-1.5">
+                            <div key={`plain-${index}`} className="flex flex-col gap-0.5">
                                 {renderRows(segment.events)}
                             </div>
                         ),
