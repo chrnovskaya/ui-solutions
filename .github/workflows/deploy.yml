@@ -30,6 +30,12 @@ jobs:
       - run: npm ci
       - run: npm run build
 
+      # Роутинг у застосунку клієнтський, а GitHub Pages віддає 404 на будь-який
+      # шлях, якому не відповідає файл на диску — через це всі роути, крім
+      # кореня, лежали. Копія index.html під іменем 404.html повертає ту саму
+      # сторінку, і далі шлях розбирає вже роутер.
+      - run: cp dist/index.html dist/404.html
+
       - uses: actions/configure-pages@v5
 
       - uses: actions/upload-pages-artifact@v3
