@@ -1,7 +1,10 @@
 export type { IconProps } from "./types";
 export { DEFAULT_ICON_SIZE } from "./types";
 export * from "./Check";
+export * from "./ChevronRight";
 export * from "./ChevronUp";
+export * from "./Pin";
+export * from "./PinFilled";
 export * from "./Plus";
 export * from "./Star";
 export * from "./StarFilled";
